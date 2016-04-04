@@ -21,12 +21,11 @@ module  LinFitDev(
 
 
 localparam IDLE       = 2'b00;
-localparam MEAN       = 2'b01;
 localparam REGRESSION = 2'b10;
 localparam REGVAR     = 2'b11;
 reg [1:0] state;
 
-reg [31:0] sum_x, sum_y, mean_x, mean_y, slope, intercept;
+reg [31:0] mean_x, mean_y, mean_xy, mean_xx, slope, intercept, sum;
 
 wire [31:0] n;
 assign n = ei-si;
@@ -45,31 +44,15 @@ begin
     begin
       if (start==1)
       begin
-        state <= MEAN;
+        state <= REGRESSION;
         index <= si;
-        sum_x <= 0;
-        sum_y <= 0;
+        mean_x <= 0;
+        mean_y <= 0;
+        mean_xy <= 0;
+        mean_xx <= 0;
         done <= 0;
         slope <= 0;
         intercept <= 0;
-      end
-    end
-    MEAN:
-    begin
-      if (index == ei)
-      begin
-        mean_x <= sum_x/n;
-        mean_y <= sum_y/n;
-        state <= REGRESSION;
-        index <= si;
-        sum_x <= 0;
-        sum_y <= 0;
-      end
-      else
-      begin
-        sum_x <= sum_x + index;
-        sum_y <= sum_y + value;
-        index <= index + 1;
       end
     end
     REGRESSION:
@@ -78,15 +61,20 @@ begin
       begin
         state <= REGVAR;
         index <= si;
-        slope <= sum_y/sum_x;
-        intercept <= mean_y-(sum_y/sum_x)*mean_x;
-        sum_x <= 0;
-        sum_y <= 0;
+        mean_x <= mean_x/n;
+        mean_y <= mean_y/n;
+        mean_xx <= mean_xx/n;
+        mean_xy <= mean_xy/n; 
+        slope <= (mean_xy - mean_x*mean_y/n)/(mean_xx - mean_x*mean_x/n);
+        intercept <= (mean_y-(mean_xy - mean_x*mean_y/n)/(mean_xx - mean_x*mean_x/n)*mean_x)/n;
+        sum <= 0;
       end
       else
       begin
-        sum_y <= sum_y + (index-mean_x)*(value-mean_y);
-        sum_x <= sum_x + (index-mean_x)*(index-mean_x);
+        mean_x <= mean_x + index;
+        mean_y <= mean_y + value;
+        mean_xy <= mean_xy + index*value;
+        mean_xx <= mean_xx + index*index;
         index <= index + 1;
       end
     end
@@ -96,11 +84,11 @@ begin
       begin
         done <= 1;
         state <= IDLE;
-        deviation <= sum_x/n;
+        deviation <= sum/n;
       end
       else
       begin
-        sum_x <= (((index*slope) + intercept) - value)**2;
+        sum <= (((index*slope) + intercept) - value)**2;
         index <= index+1;
       end
     end
