@@ -4,17 +4,17 @@ module chunker(
 
   //Going to allow 4 variable query/retrievals for parallel access, if
   //desired.
-  output [31:0] varIndx1,
-  input  [31:0] var1,
+  output [31:0] indx1,
+  input  [31:0] value1,
 
-  output [31:0] varIndx2,
-  input  [31:0] var2,
+  output [31:0] indx2,
+  input  [31:0] value2,
 
-  output [31:0] varIndx3,
-  input  [31:0] var3,
+  output [31:0] indx3,
+  input  [31:0] value3,
 
-  output [31:0] varIndx4,
-  input  [31:0] var4,
+  output [31:0] indx4,
+  input  [31:0] value4,
 
   //Start when told
   input start,
@@ -58,6 +58,41 @@ queue q (.Clk(Clk), .Rst(Rst),
          .full(qFull));
 
 
+// variance modules
+wire [31:0] varMod1Var, varMod1Mean;
+wire        varMod1Done;
+reg  [31:0] varMod1si, varMod1ei;
+reg         varMod1Start;
+var varMod1 (.Clk(Clk), .Rst(Rst), .si(), .ei(),
+             .index(indx1), .value(value1),
+             .start(varMod1Start), .done(varMod1Done),
+             .variance(varMod1Var), .mean(varMod1Mean)
+            );
+wire [31:0] varMod2Var, varMod2Mean;
+wire        varMod2Done;
+reg  [31:0] varMod2si, varMod2ei;
+reg         varMod2Start;
+var varMod2 (.Clk(Clk), .Rst(Rst), .si(), .ei(),
+             .index(indx1), .value(value1),
+             .start(varMod2Start), .done(varMod2Done),
+             .variance(varMod2Var), .mean(varMod2Mean)
+wire [31:0] varMod3Var, varMod3Mean;
+wire        varMod3Done;
+reg  [31:0] varMod3si, varMod3ei;
+reg         varMod3Start;
+var varMod3 (.Clk(Clk), .Rst(Rst), .si(), .ei(),
+             .index(indx1), .value(value1),
+             .start(varMod3Start), .done(varMod3Done),
+             .variance(varMod3Var), .mean(varMod3Mean)
+wire [31:0] varMod4Var, varMod4Mean;
+wire        varMod4Done;
+reg  [31:0] varMod4si, varMod4ei;
+reg         varMod4Start;
+var varMod4 (.Clk(Clk), .Rst(Rst), .si(), .ei(),
+             .index(indx1), .value(value1),
+             .start(varMod4Start), .done(varMod4Done),
+             .variance(varMod4Var), .mean(varMod4Mean)
+   
 always @ (posedge Clk, negedge Rst)
 begin
   if (!Rst)
@@ -67,6 +102,11 @@ begin
     index_prev <= 0;
     index_up <= 1'b1;
     index_id <= 0;
+    //Var module inits
+    varMod1Start <= 0;
+    varMod2Start <= 0;
+    varMod3Start <= 0;
+    varMod4Start <= 0;
   end
   else
   begin
@@ -110,6 +150,17 @@ begin
       end
       VARIANCE:
       begin
+      //Reset any start signals
+        if (qFull == 1)
+        begin
+        end
+        else
+        begin
+          if (varMod1Start == 1) varMod1Start <= 0;
+          if (varMod2Start == 1) varMod2Start <= 0;
+          if (varMod3Start == 1) varMod3Start <= 0;
+          if (varMod4Start == 1) varMod4Start <= 0;
+        end
       end
     endcase
   end
