@@ -1,6 +1,6 @@
 //Given a start index and end index, calculates the linear fit of the data and
 //then the average of the square of the deviation from the linear fit.
-module  LinFitDev(
+module  LinRegDev(
   input Clk,
   input Rst,
 
@@ -66,7 +66,8 @@ begin
         mean_xx <= mean_xx/n;
         mean_xy <= mean_xy/n; 
         slope <= (mean_xy - mean_x*mean_y/n)/(mean_xx - mean_x*mean_x/n);
-        intercept <= (mean_y-(mean_xy - mean_x*mean_y/n)/(mean_xx - mean_x*mean_x/n)*mean_x)/n;
+        intercept <= (mean_y-(mean_xy - mean_x*mean_y/n)/
+		                     (mean_xx - mean_x*mean_x/n)*mean_x)/n;
         sum <= 0;
       end
       else

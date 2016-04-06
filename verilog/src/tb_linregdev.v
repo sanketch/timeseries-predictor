@@ -1,6 +1,6 @@
 `timescale 1ns / 100ps
 
-module tb_linfitdev;
+module tb_linregdev;
 
 parameter clk_cycle = 2;
 
@@ -15,7 +15,7 @@ wire done;
 
 assign value = data[index];
 
-LinFitDev dut(
+LinRegDev dut(
   .Clk(clk), .Rst(rst),
   .si(si), .ei(ei),
   .index(index), .deviation(deviation), .mean(mean), .value(value),
