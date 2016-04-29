@@ -7,7 +7,9 @@ module top_noc_linreg(
 
 	flit_to_receive,
 	credit_to_send,
-	send_credit_flag	
+	send_credit_flag,
+	valueIn,
+	requestValue
 );
 
  parameter master_destination = 1;
@@ -18,15 +20,18 @@ module top_noc_linreg(
  parameter credit_port_width = 1 + vc_bits; // 1 valid bit
  
  input CLK, RST_N;
+ input [31:0] valueIn;
  output send_credit_flag;
  output wire [flit_port_width-1:0] flit_to_send;
  input wire [credit_port_width-1:0] credit_to_accept;
  input wire [flit_port_width-1:0] flit_to_receive;
  output wire [credit_port_width-1:0] credit_to_send;
  output wire send_credit_flag;
+ output wire [31:0] requestValue;
  
 reg [31:0] start_index;
 reg [31:0] end_index;
+reg [31:0] current;
 wire [31:0] output_index;
 reg [31:0] value;
 
@@ -59,10 +64,9 @@ localparam SEND_CHUNK_ID_END = SEND_CHUNK_ID_START - 4;
 localparam SEND_DATA_START = SEND_CHUNK_ID_END - 1;
 localparam SEND_DATA_END = 0;
 
-localparam QIDLE                = 4'b0001;
-localparam QRECEIVECHUNKSIZE    = 4'b0010;
-localparam QOPERATE             = 4'b0100;
-localparam QDONE                = 4'b1000;
+localparam QIDLE                = 3'b001;
+localparam QRECEIVECHUNKSIZE    = 3'b010;
+localparam QOPERATE             = 3'b100;
 
 reg [2:0] STATE;
 
@@ -75,6 +79,9 @@ assign flit_to_send[flit_port_width-1:VC_END-1] = { done, 1'b1, master_destinati
 assign flit_to_send[SLAVE_ID_START:SEND_DATA_END] ={ slave_id, chunk_id, deviation};
 assign credit_to_send = {send_valid, vc};
 
+reg [31:0] req;
+assign requestValue = req;
+
 always @(posedge CLK)
 begin
 	if (~RST_N)
@@ -84,6 +91,7 @@ begin
 		end_index <= 0;
 		value <= 0;
 		start <= 0;
+		current <= 0;
 	end
 	else
 	begin
@@ -110,17 +118,27 @@ begin
 					chunk_id <= flit_to_receive[RECEIVE_CHUNK_ID_START:RECEIVE_CHUNK_ID_END];
 					STATE <= QOPERATE;
 					send_valid = 1;
+					req <= start_index;
+					current <= start_index + 1;
+					value <= valueIn;
 				end
 			end
 			
 			QOPERATE:
 			begin
-				STATE <= QDONE;
-			end
-			
-			QDONE:
-			begin
-				STATE <= QIDLE;
+				if (current < end_index - 1)
+				begin
+					current <= output_index + 2;
+					value <= valueIn;
+					req <= current;
+				end
+				else
+				begin
+					if (done)
+					begin
+						STATE <= QIDLE;
+					end
+				end
 			end
 		endcase
 	end

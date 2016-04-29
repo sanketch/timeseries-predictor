@@ -42,6 +42,8 @@ module tb_noc_linreg();
   reg [`FLIT_DATA_WIDTH-1:0] data;
 
   wire [flit_port_width-1:0] flit = flit_in[0];
+  reg [31:0] slave0Index;
+  reg [31:0] slave0Value;
   
   // Generate Clock
   initial Clk = 0;
@@ -77,6 +79,23 @@ module tb_noc_linreg();
       end
     end
   end
+  
+  parameter datawidth = 32;
+  parameter depthbits = 4;
+  parameter datadepth = 1 << depthbits;
+  parameter [datawidth-1:0] ram [0:datadepth-1] =
+                         '{32'h00000000, 32'h00000001, 32'h00000002,
+                           32'h00000003, 32'h00000004, 32'h00000005,
+                           32'h00000006, 32'h00000007, 32'h00000008,
+                           32'h00000009, 32'h0000000a, 32'h0000000b,
+                           32'h0000000c, 32'h0000000d, 32'h0000000e,
+                           32'h0000000f};
+  
+    multipleIOram #(.DATAWIDTH(datawidth),.DEPTHBITS(depthbits),.DATA(ram)) memory(
+        .clk(Clk),
+        .in1(slave0Index),
+        .out1(slave0Value)
+    );
 
 	top_noc_linreg #(1) slave0 (
 		.CLK(Clk),
@@ -85,7 +104,9 @@ module tb_noc_linreg();
 		.credit_to_accept(credit_out[0]),
 		.flit_to_receive(flit_out[0]),
 		.credit_to_send(credit_in[0]),
-		.send_credit_flag(send_credit[0])
+		.send_credit_flag(send_credit[0]),
+		.valueIn(slave0Value),
+		.requestValue(slave0Index)
 	);
 
 	mkNetwork routers

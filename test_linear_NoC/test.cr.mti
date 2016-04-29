@@ -1,0 +1,144 @@
+C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterInputArbitersStatic.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterInputArbitersStatic.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkRouterInputArbitersStatic
+
+Top level modules:
+	mkRouterInputArbitersStatic
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/RegFileLoadSyn.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/RegFileLoadSyn.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module RegFileLoadSyn
+
+Top level modules:
+	RegFileLoadSyn
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterOutputArbitersRoundRobin.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterOutputArbitersRoundRobin.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkRouterOutputArbitersRoundRobin
+
+Top level modules:
+	mkRouterOutputArbitersRoundRobin
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/top_noc_linreg.v {1 {vlog -work work -vopt +incdir+C:/Users/Chris/Desktop/timeseries-predictor/build C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/top_noc_linreg.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module top_noc_linreg
+
+Top level modules:
+	top_noc_linreg
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/module_outport_encoder.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/module_outport_encoder.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module module_outport_encoder
+
+Top level modules:
+	module_outport_encoder
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkInputArbiter.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkInputArbiter.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkInputArbiter
+
+Top level modules:
+	mkInputArbiter
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkOutPortFIFO.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkOutPortFIFO.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkOutPortFIFO
+
+Top level modules:
+	mkOutPortFIFO
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkSepRouterAllocator.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkSepRouterAllocator.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkSepRouterAllocator
+
+Top level modules:
+	mkSepRouterAllocator
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkNetwork.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkNetwork.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkNetwork
+
+Top level modules:
+	mkNetwork
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterCore.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterCore.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkRouterCore
+
+Top level modules:
+	mkRouterCore
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/multipleIORam.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/multipleIORam.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module multipleIOram
+
+Top level modules:
+	multipleIOram
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/tb_linregdev.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/tb_linregdev.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module tb_linregdev
+
+Top level modules:
+	tb_linregdev
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/connect_parameters.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/connect_parameters.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterOutputArbitersStatic.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterOutputArbitersStatic.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkRouterOutputArbitersStatic
+
+Top level modules:
+	mkRouterOutputArbitersStatic
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterInputArbitersRoundRobin.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkRouterInputArbitersRoundRobin.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkRouterInputArbitersRoundRobin
+
+Top level modules:
+	mkRouterInputArbitersRoundRobin
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/linregdev.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/verilog/src/linregdev.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module LinRegDev
+
+Top level modules:
+	LinRegDev
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkInputVCQueues.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkInputVCQueues.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkInputVCQueues
+
+Top level modules:
+	mkInputVCQueues
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/testbench_sample.v {1 {vlog -work work -vopt +incdir+C:/Users/Chris/Desktop/timeseries-predictor/build C:/Users/Chris/Desktop/timeseries-predictor/build/testbench_sample.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module CONNECT_testbench_sample
+
+Top level modules:
+	CONNECT_testbench_sample
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/mkOutputArbiter.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/mkOutputArbiter.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module mkOutputArbiter
+
+Top level modules:
+	mkOutputArbiter
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/module_gen_grant_carry.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/module_gen_grant_carry.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module module_gen_grant_carry
+
+Top level modules:
+	module_gen_grant_carry
+
+} {} {}} C:/Users/Chris/Desktop/timeseries-predictor/build/RegFile_1port.v {1 {vlog -work work -vopt C:/Users/Chris/Desktop/timeseries-predictor/build/RegFile_1port.v
+Model Technology ModelSim SE-64 vlog 10.2 Compiler 2013.02 Feb  2 2013
+-- Compiling module RegFile_1port
+
+Top level modules:
+	RegFile_1port
+
+} {} {}}
